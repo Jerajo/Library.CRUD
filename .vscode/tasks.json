@@ -1,0 +1,93 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/Source/Library.Api/Library.Api.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile",
+      "detail": "dotnet build [options] <PROJECT | SOLUTION>"
+    },
+    {
+      "label": "build-mock",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/Source/Library.Api/Library.Api.csproj",
+        "--configuration",
+        "MOCK",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile",
+      "detail": "dotnet build [options] <PROJECT | SOLUTION>"
+    },
+    {
+      "label": "publish",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "publish",
+        "${workspaceFolder}/Source/Library.Api/Library.Api.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile",
+      "detail": "dotnet publish --Project [options]"
+    },
+    {
+      "label": "watch",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "watch",
+        "run",
+        "${workspaceFolder}/Source/Library.Api/Library.Api.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile",
+      "detail": "dotnet watch run  --Project [options]"
+    },
+    {
+      "type": "npm",
+      "script": "build",
+      "path": "Source/Library.Vuejs/",
+      "group": "build",
+      "problemMatcher": [],
+      "label": "npm: build - Source/Library.Vuejs",
+      "detail": "vue-cli-service build"
+    },
+    {
+      "type": "npm",
+      "script": "install",
+      "path": "Source/Library.Vuejs/",
+      "problemMatcher": [],
+      "label": "npm: install - Source/Library.Vuejs",
+      "detail": "install dependencies from package"
+    },
+    {
+      "type": "npm",
+      "script": "lint",
+      "path": "Source/Library.Vuejs/",
+      "problemMatcher": [],
+      "label": "npm: lint - Source/Library.Vuejs",
+      "detail": "vue-cli-service lint"
+    },
+    {
+      "label": "npm: serve - Source/Library.Vuejs",
+      "type": "npm",
+      "script": "serve",
+      "path": "Source/Library.Vuejs/",
+      "problemMatcher": [],
+      "detail": "vue-cli-service serve"
+    }
+  ]
+}
