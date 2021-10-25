@@ -29,18 +29,14 @@ namespace Library.Api.Controllers
         /// <param name="filters">The filters used to query the books.</param>
         /// <returns>Returns <see cref="List{BookDto}"/>.</returns>
         [HttpGet]
-        public IActionResult GetBooks([FromBody] BookFiltersDto filters)
+        public IActionResult GetBooks([FromQuery] BookFiltersDto filters)
         {
             var getBook = _queryFactory.MakeQuery<GetBooksQuery>();
 
-            List<BookDto> books = getBook.Execute(c =>
-                string.IsNullOrEmpty(c.DeleteFlag) &&
-                (c.Title.Contains(filters.Title, StringComparison.OrdinalIgnoreCase)) &&
-                (c.Authors.Any(a => string.IsNullOrEmpty(a.DeleteFlag))) &&
-                (c.BookStockByEditions.Any(a => string.IsNullOrEmpty(a.DeleteFlag) &&
-                    (a.AvailabeBooks > 0 || !filters.AvailableOnly))) &&
-                (c.Categories.Any(a => string.IsNullOrEmpty(a.DeleteFlag) &&
-                    (a.Id == filters.CategoryId || filters.CategoryId == null)))
+            List<BookDto> books = getBook.Execute((c => string.IsNullOrEmpty(c.DeleteFlag) &&
+                (string.IsNullOrWhiteSpace(filters.Title) || c.Title.Contains(filters.Title, StringComparison.OrdinalIgnoreCase)) &&
+                (c.Categories.Any(a => filters.CategoryId == null || a.Id == filters.CategoryId)),
+                filters.AvailableOnly)
             );
 
             return Ok(books);
@@ -54,7 +50,7 @@ namespace Library.Api.Controllers
         [HttpGet("{id}")]
         public IActionResult GetBookById([FromRoute, FromQuery] Guid id)
         {
-            var getClientById = _queryFactory.MakeQuery<GetBooksQuery>();
+            var getClientById = _queryFactory.MakeQuery<GetBookQuery>();
 
             var client = getClientById.Execute(c =>
                 c.Id == id &&
@@ -109,17 +105,18 @@ namespace Library.Api.Controllers
         /// <summary>
         /// Marks the selected book as deleted.
         /// </summary>
-        /// <param name="id">Represents the book's unique identifier.</param>
+        /// <param name="bookId">Represents the book's unique identifier.</param>
+        /// <param name="stockId">Represents the stock's unique identifier.</param>
         /// <returns>Returns <see cref="OkResult"/> | <see cref="NotFoundResult"/>.</returns>
-        [HttpDelete("{id}")]
-        public IActionResult DeleteBook([FromRoute, FromQuery] Guid id)
+        [HttpDelete("{bookId}/{stockId}")]
+        public IActionResult DeleteBookStock(Guid bookId, Guid stockId)
         {
-            if (GetBookById(id) is NotFoundResult)
+            if (GetBookById(bookId) is NotFoundResult)
                 return NotFound();
 
-            var deleteClient = _commandFactory.MakeCommand<DeleteBookCommand>();
+            var deleteClient = _commandFactory.MakeCommand<DeleteBookStockCommand>();
 
-            deleteClient.Execute(id);
+            deleteClient.Execute(stockId);
 
             return Ok();
         }

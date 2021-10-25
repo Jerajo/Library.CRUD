@@ -23,7 +23,7 @@ namespace Library.SqlServer.Setup
                 .IsRequired();
 
             modelBuilder.Entity<BookStockByEdition>()
-                .Property(b => b.AvailabeBooks)
+                .Property(b => b.AvailableBooks)
                 .IsRequired();
 
             modelBuilder.Entity<BookStockByEdition>()

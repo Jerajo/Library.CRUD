@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AuthorNotFound" xml:space="preserve">
+    <value>The author was not found. ID: {0}.</value>
+  </data>
+  <data name="BookEditionNotFound" xml:space="preserve">
+    <value>The book edition was not found. Edition: {0}.</value>
+  </data>
+  <data name="CantAddTheSameBook" xml:space="preserve">
+    <value>Cant add the same book with the same edition. Title: {0}.</value>
+  </data>
+  <data name="CategoryNotFound" xml:space="preserve">
+    <value>The category was not found. ID: {0}.</value>
+  </data>
   <data name="ConnectionStrings" xml:space="preserve">
     <value>Server=(localdb)\\MSSQLLocalDB; Database=Library_DB; Trusted_Connection=True; MultipleActiveResultSets=True;</value>
   </data>

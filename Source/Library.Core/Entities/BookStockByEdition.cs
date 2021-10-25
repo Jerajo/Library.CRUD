@@ -16,7 +16,7 @@ namespace Library.Core.Entities
         /// <summary>
         /// Indicates how many books are available.
         /// </summary>
-        public int AvailabeBooks { get; set; }
+        public int AvailableBooks { get; set; }
 
         /// <summary>
         /// Indicates how many books are borrowed.

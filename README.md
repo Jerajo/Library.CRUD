@@ -10,7 +10,7 @@ Follow the installation instructions for each dependency on their respective off
 
 [Windows compatible with .NET Core 3.1 runtime or any other compatible system](https://docs.microsoft.com/en-us/dotnet/core/install/windows?tabs=netcore31)
 
-[.NET Core 3.1 LTS (SDK and Runtime)](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+[.NET 5.0 LTS (SDK and Runtime)](https://dotnet.microsoft.com/download/dotnet/5.0)
 
 [SQL Server 2019 (Developer or Express)](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 
@@ -34,6 +34,7 @@ In the root directory of the repository. Open a command prompt of your choice an
 #### 2. _install node modules_
 
 ```bash
+  cd ..
   cd Library.Vuejs/
   npm install
 ```
@@ -80,7 +81,7 @@ if you are using **Visual Studio Code** you can run the task `npm: serve - Sourc
 
 ### General information
 
-This is a demo application using .NET Core 3.1 and Vuejs v3. Consist on a CRUD for the entities Library and Addresses where each client can have multiple Library.
+This is a demo application using .NET 5.0 and Vuejs v3. Consist on Library web site that allows you to borrow and devolve a book as well to filter by title autor, category and availability. Can add new books to the list and edit then.
 
 Here are some information about the architectures, code principles, design patterns and libraries used in this project.
 
@@ -97,6 +98,7 @@ Here are some information about the architectures, code principles, design patte
 - Clean
 - SOLID
 - Defensive Coding
+- CQRS
 
 #### Design patterns
 
