@@ -21,6 +21,7 @@ namespace Library.Api
             services.AddScoped<CreateBookCommand>();
             services.AddScoped<DeleteBookCommand>();
             services.AddScoped<UpdateBookCommand>();
+            services.AddScoped<DeleteBookStockCommand>();
         }
 
         /// <summary>
@@ -31,6 +32,8 @@ namespace Library.Api
         {
             services.AddScoped<GetBookQuery>();
             services.AddScoped<GetBooksQuery>();
+            services.AddScoped<GetAuthorsQuery>();
+            services.AddScoped<GetCategoriesQuery>();
         }
 
         /// <summary>

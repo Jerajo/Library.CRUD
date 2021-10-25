@@ -1,6 +1,6 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Library.Core.Entities
 {
@@ -9,6 +9,13 @@ namespace Library.Core.Entities
     /// </summary>
     public class Book : BaseEntity<Guid>
     {
+        public Book()
+        {
+            Categories = new List<Category>();
+            Authors = new List<Author>();
+            BookStockByEditions = new List<BookStockByEdition>();
+        }
+
         /// <summary>
         /// Holds the book's title.
         /// </summary>
@@ -22,16 +29,16 @@ namespace Library.Core.Entities
         /// <summary>
         /// Holds the book's categories information.
         /// </summary>
-        public virtual IEnumerable<Category> Categories { get; set; }
+        public virtual ICollection<Category> Categories { get; set; }
 
         /// <summary>
         /// Holds the book's authors information.
         /// </summary>
-        public virtual IEnumerable<Author> Authors { get; set; }
+        public virtual ICollection<Author> Authors { get; set; }
 
         /// <summary>
         /// Holds the library stock for the books by editions's authors information.
         /// </summary>
-        public virtual IEnumerable<BookStockByEdition> BookStockByEditions { get; set; }
+        public virtual ICollection<BookStockByEdition> BookStockByEditions { get; set; }
     }
 }

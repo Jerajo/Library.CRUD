@@ -1,9 +1,14 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+
 using Ardalis.GuardClauses;
 using AutoMapper;
+
 using Library.Application.DTOs;
 using Library.Core.Contracts;
 using Library.Core.Entities;
+using Library.Core.Resources;
 
 namespace Library.Application.Commands
 {
@@ -56,6 +61,39 @@ namespace Library.Application.Commands
             var book = _bookRepository.Get(x => x.Id == bookId);
 
             _mapper.Map(model, book);
+
+            book.UpdatedDate = DateTime.Now;
+
+            List<Category> categories = new List<Category>();
+            foreach (var categoryId in model.Categories)
+            {
+                var category = _categoryRepository.Get(category => category.Id == categoryId);
+                if (category is null)
+                    throw new InvalidOperationException(string.Format(Resources.CategoryNotFound, categoryId));
+                categories.Add(category);
+            }
+            if (!book.Categories.OrderBy(x => x.Id).SequenceEqual(categories.OrderBy(x => x.Id)))
+                book.Categories = categories;
+
+            List<Author> authors = new List<Author>();
+            foreach (var authorId in model.Authors)
+            {
+                var author = _authorRepository.Get(author => author.Id == authorId);
+                if (author is null)
+                    throw new InvalidOperationException(string.Format(Resources.AuthorNotFound, authorId));
+                authors.Add(author);
+            }
+            if (!book.Authors.OrderBy(x => x.Id).SequenceEqual(authors.OrderBy(x => x.Id)))
+                book.Authors = authors;
+
+            var version = _stockRepository.Get(stock => stock.Id == model.StockId);
+            if (version is null)
+                throw new InvalidOperationException(string.Format(Resources.BookEditionNotFound, model.BookEdition));
+
+            version.BookEdition = model.BookEdition;
+            version.AvailableBooks = model.AvailableBooks;
+            version.BorrowedBooks = model.BorrowedBooks;
+            version.UpdatedDate = DateTime.Now;
 
             var transaction = _bookRepository.GetTransaction();
 

@@ -22,7 +22,7 @@ namespace Library.Core.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Library.Core.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Library.Core.Resources.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace Library.Core.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,9 +61,45 @@ namespace Library.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The author was not found. ID: {0}..
+        /// </summary>
+        public static string AuthorNotFound {
+            get {
+                return ResourceManager.GetString("AuthorNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The book edition was not found. Edition: {0}..
+        /// </summary>
+        public static string BookEditionNotFound {
+            get {
+                return ResourceManager.GetString("BookEditionNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cant add the same book with the same edition. Title: {0}..
+        /// </summary>
+        public static string CantAddTheSameBook {
+            get {
+                return ResourceManager.GetString("CantAddTheSameBook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The category was not found. ID: {0}..
+        /// </summary>
+        public static string CategoryNotFound {
+            get {
+                return ResourceManager.GetString("CategoryNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Server=(localdb)\\MSSQLLocalDB; Database=Library_DB; Trusted_Connection=True; MultipleActiveResultSets=True;.
         /// </summary>
-        internal static string ConnectionStrings {
+        public static string ConnectionStrings {
             get {
                 return ResourceManager.GetString("ConnectionStrings", resourceCulture);
             }
