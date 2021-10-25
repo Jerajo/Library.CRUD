@@ -21,6 +21,6 @@ namespace Library.Core.Entities
         /// <summary>
         /// Holds the author's books information.
         /// </summary>
-        public virtual IEnumerable<Book> Books { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
     }
 }

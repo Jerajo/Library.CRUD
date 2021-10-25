@@ -6,18 +6,13 @@ Vue.use(VueRouter);
 const routes: Array<RouteConfig> = [
   {
     path: "/",
-    name: "Client List",
-    component: () => import("../views/Client/ClientList.vue")
+    name: "Book List",
+    component: () => import("../views/Book/BookList.vue")
   },
   {
-    path: "/client-form",
-    name: "Client Form",
-    component: () => import("../views/Client/ClientForm.vue")
-  },
-  {
-    path: "/address-form",
-    name: "Address Form",
-    component: () => import("../views/Address/AddressForm.vue")
+    path: "/book-form",
+    name: "Book Formulary",
+    component: () => import("../views/Book/BookFormulary.vue")
   }
 ];
 

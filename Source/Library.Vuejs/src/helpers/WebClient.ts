@@ -1,8 +1,10 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 
 export enum Endpoints {
-  Clients = "Clients",
-  Addresses = "Addresses"
+  Books = "Books",
+  Categories = "Categories",
+  Authors = "Authors",
+  Stocks = "Stocks"
 }
 
 export class WebClient {
@@ -10,7 +12,7 @@ export class WebClient {
 
   constructor() {
     this.instance = axios.create({
-      baseURL: 'http://10.0.0.2:8080/api/',
+      baseURL: "https://localhost:44344/api/", //"http://10.0.0.2:8080/api/",
       timeout: 30000,
       headers: {
         "Access-Control-Allow-Origin": "*",

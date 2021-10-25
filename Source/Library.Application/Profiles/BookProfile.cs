@@ -17,8 +17,13 @@ namespace Library.Application.Profiles
 
             CreateMap<Book, BookDto>();
 
-            CreateMap<BookForCreationDto, Book>();
-            CreateMap<BookForEditionDto, Book>();
+            CreateMap<BookForCreationDto, Book>()
+                .ForMember(book => book.Categories, action => action.Ignore())
+                .ForMember(book => book.Authors, action => action.Ignore());
+
+            CreateMap<BookForEditionDto, Book>()
+                .ForMember(book => book.Categories, action => action.Ignore())
+                .ForMember(book => book.Authors, action => action.Ignore());
         }
     }
 }

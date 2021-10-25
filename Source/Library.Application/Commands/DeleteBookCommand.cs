@@ -12,30 +12,37 @@ namespace Library.Application.Commands
     public class DeleteBookCommand : ICommand<Guid>
     {
         private readonly IRepository<Book> _repository;
-        private readonly IMapper _mapper;
+        private readonly IRepository<BookStockByEdition> _stockRepository;
 
         /// <summary>
         /// Default constructor for <see cref="DeleteBookCommand"/>.
         /// </summary>
-        /// <param name="repository">Represents the book repository instance.</param>
-        /// <param name="mapper">Represents the mapper service instance.</param>
-        public DeleteBookCommand(IRepository<Book> repository, IMapper mapper)
+        /// <param name="bookRepository">Represents the book repository instance.</param>
+        /// <param name="stockRepository">Represents the stock repository instance.</param>
+        public DeleteBookCommand(IRepository<Book> bookRepository,
+            IRepository<BookStockByEdition> stockRepository)
         {
-            Guard.Against.Null(repository, nameof(repository));
-            Guard.Against.Null(mapper, nameof(mapper));
+            Guard.Against.Null(stockRepository, nameof(stockRepository));
+            Guard.Against.Null(bookRepository, nameof(bookRepository));
 
-            _repository = repository;
-            _mapper = mapper;
+            _stockRepository = stockRepository;
+            _repository = bookRepository;
         }
 
         /// <inheritdoc/>
         public void Execute(Guid bookId)
         {
-            var transaction = _repository.GetTransaction();
 
             var book = _repository.Get(c => c.Id == bookId);
 
             book.DeleteFlag = "D";
+
+            var bookEditions = _stockRepository.Query(stock => stock.BookId == book.Id);
+
+            foreach (var edition in bookEditions)
+                edition.DeleteFlag = "D";
+
+            var transaction = _repository.GetTransaction();
 
             transaction.Commit();
         }
